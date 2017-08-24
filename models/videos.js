@@ -2,7 +2,9 @@
 var mongoose = require( 'mongoose' );
 
 //Define a schema
-var videoSchema = new mongoose.Schema({
+var Schema = mongoose.Schema;
+
+var videoSchema = Schema({
     _Id: Schema.Types.ObjectId,    
     updated: { type: Date, default: Date.now },    
     title: {type: String, required: true},

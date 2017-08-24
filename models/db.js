@@ -13,7 +13,7 @@ var db = mongoose.connection;
 var gracefulShutdown;
 
 db.on('connected', function(){
-    console.log('Mongoose connected to ' + dbURIvidzy);
+    console.log('Mongoose connected to ' + dbURI);
 })
 
 db.on('error', function(err){

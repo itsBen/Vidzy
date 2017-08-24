@@ -1,22 +1,30 @@
 var express = require('express');
+//var videoCtrl = require('../controllers/videoController');
+
 var router = express.Router();
 
+/*
 var monk = require('monk');
 var db = monk('localhost:27017/vidzy');
+*/
 
-router.get('/', function (req, res) {
-    var collection = db.get('videos');
-    collection.find({}, function (err, videos) {
+var videoColl = require('../models/videos')
+
+router.get('/', function(req, res) {
+    console.log("getAllVideos");
+
+    videoColl.find({}, function (err, videos) {
         if (err) throw err;
         res.json(videos);
     });
 });
 
 router.post('/', function(req, res){
-    var collection = db.get('videos');
-    collection.insert({
+    videoColl.create({
         title: req.body.title,
-        description: req.body.description
+        description: req.body.description,
+        rating: req.body.rating,
+        genre: req.body.genre
     }, function(err, video){
         if (err) throw err;
 
@@ -25,8 +33,7 @@ router.post('/', function(req, res){
 });
 
 router.get('/:id', function(req, res) {
-    var collection = db.get('videos');
-    collection.findOne({ _id: req.params.id }, function(err, video){
+    videoColl.findOne({ _id: req.params.id }, function(err, video){
         if (err) throw err;
 
       	res.json(video);
@@ -34,8 +41,7 @@ router.get('/:id', function(req, res) {
 });
 
 router.put('/:id', function(req, res){
-    var collection = db.get('videos');
-    collection.update({
+    videoColl.update({
         _id: req.params.id
     },
     {
@@ -49,12 +55,21 @@ router.put('/:id', function(req, res){
 });
 
 router.delete('/:id', function(req, res){
-    var collection = db.get('videos');
-    collection.remove({ _id: req.params.id }, function(err, video){
+    videoColl.remove({ _id: req.params.id }, function(err, video){
         if (err) throw err;
 
         res.json(video);
     });
 });
+
+
+/*
+
+router.route('/').get(videoCtrl.getVideos);
+router.route('/').post(videoCtrl.addVideo);
+router.route('/:id').get(videoCtrl.getVideo);
+router.route('/:id').put(videoCtrl.updateVideo);
+router.route('/:id').delete(videoCtrl.deleteVideo);
+*/
 
 module.exports = router;
