@@ -9,7 +9,9 @@ var db = monk('localhost:27017/vidzy');
 */
 
 var videoColl = require('../models/videos')
+var videoCtrl = require('../controllers/videoController');
 
+/*
 router.get('/', function(req, res) {
     console.log("getAllVideos");
 
@@ -61,7 +63,7 @@ router.delete('/:id', function(req, res){
         res.json(video);
     });
 });
-
+*/
 
 /*
 
@@ -71,5 +73,14 @@ router.route('/:id').get(videoCtrl.getVideo);
 router.route('/:id').put(videoCtrl.updateVideo);
 router.route('/:id').delete(videoCtrl.deleteVideo);
 */
+
+
+
+router.get('/', videoCtrl.getVideos);
+router.post('/', videoCtrl.addVideo);
+router.get('/:id',videoCtrl.getVideo);
+router.put('/:id',videoCtrl.updateVideo);
+router.delete('/:id',videoCtrl.deleteVideo);
+
 
 module.exports = router;
