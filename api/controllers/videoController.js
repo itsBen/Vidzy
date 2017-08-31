@@ -1,10 +1,12 @@
-var videoColl = require('../models/videos')
+var mongoose       = require('mongoose');
+var Video          = mongoose.model('Video');
+var getCurrentUser = require('../utils');
 
-exports.getVideo = function (req, res) {
+module.exports.getVideo = function (req, res) {
     var videoId = req.params.id;
     console.log("getVideo - id: " + videoId);
 
-    videoColl.findOne({
+    Video.findOne({
         _id: videoId
     }, function (err, video) {
         if (err) throw err;
@@ -13,19 +15,22 @@ exports.getVideo = function (req, res) {
     });
 };
 
-exports.getVideos = function (req, res) {
+module.exports.getVideos = function (req, res) {
     console.log("getVideos");
-
-    videoColl.find({}, function (err, videos) {
-        if (err) throw err;
-        res.json(videos);
-    });
+    // TODO:
+    //getCurrentUser(req, res, function(req, res, user) {
+        //console.log(user);
+        Video.find({}, function (err, videos) {
+            if (err) throw err;
+            res.json(videos);
+        });
+    //});
 };
 
-exports.addVideo = function (req, res) {
+module.exports.addVideo = function (req, res) {
     console.log("addVideo");
 
-    videoColl.create({
+    Video.create({
         title: req.body.title,
         description: req.body.description
     }, function (err, video) {
@@ -35,11 +40,11 @@ exports.addVideo = function (req, res) {
     });
 };
 
-exports.updateVideo = function (req, res) {
+module.exports.updateVideo = function (req, res) {
     var videoId = req.params.id;
     console.log("updatedVideo - id: " + videoId);
 
-    videoColl.update({
+    Video.update({
         _id: videoId
     }, {
         title: req.body.title,
@@ -51,11 +56,11 @@ exports.updateVideo = function (req, res) {
     });
 };
 
-exports.deleteVideo = function (req, res) {
+module.exports.deleteVideo = function (req, res) {
     var videoId = req.params.id;    
     console.log("deleteVideo- id: " + videoId);
 
-    videoColl.remove({
+    Video.remove({
         _id: videoId
     }, function (err, video) {
         if (err) throw err;

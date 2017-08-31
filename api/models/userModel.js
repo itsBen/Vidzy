@@ -1,12 +1,12 @@
-/*
-var mongoose = require( 'mongoose' );
-var crypto = require('crypto');
-var jwt = require('jsonwebtoken');
+
+var mongoose = require('mongoose' );
+var crypto   = require('crypto');
+var jwt      = require('jsonwebtoken');
 
 //Define a schema
 var Schema = mongoose.Schema;
 
-var userSchema = Schema({
+var userSchema = new Schema({
     email: { type: String, unique: true, required: true },
     name: { type: String, required: true },
     hash: String,
@@ -32,6 +32,9 @@ userSchema.methods.generateJwt = function() {
         email: this.email,
         name: this.name,
         exp: parseInt(expiry.getTime() / 1000),
-        }, process.env.JWT_SECRET );
+        },
+    process.env.JWT_SECRET );
 };
-*/
+
+ //Export function to create "User" model class
+ module.exports = mongoose.model('User', userSchema );

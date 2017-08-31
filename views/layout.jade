@@ -7,7 +7,17 @@ html(ng-app='Vidzy')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-resource.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-route.js')
     script(src='/javascripts/vidzy.js')
+    script(src='/javascripts/services/authentication.service.js')
 
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css')
   body
+
+    
+  div.container
+    ul
+      a(href="/#/register")
+        li Register
+      a(href="/#/login")
+        li Login
+
     block content

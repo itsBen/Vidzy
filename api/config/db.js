@@ -1,6 +1,4 @@
-//Import the mongoose module
 var mongoose = require('mongoose');
-
 var readLine = require ("readline");
 
 //Set up default mongoose connection
@@ -23,12 +21,6 @@ db.on('error', function(err){
 db.on('disconnected', function(){
     console.log('Mongoose disconnected');
 })
-
-/*
-vidzyDB.close(function(){
-    console.log('Mongoose log disconnected');
-})
-*/
 
 if (process.platform === "win32"){
     var rl = readLine.createInterface ({
@@ -69,5 +61,6 @@ process.on('SIGTERM', function() {
     });
 });
 
-
-require('./videos');
+// include schemas and models
+require('../models/videoModel');
+require('../models/userModel');
