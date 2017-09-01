@@ -1,5 +1,7 @@
 # Dependency directory
 node_modules
+bin
+.vs
 
 # Environment variables
 .env
