@@ -5,3 +5,8 @@ bin
 
 # Environment variables
 .env
+
+# node.js
+#
+node_modules/
+npm-debug.log
