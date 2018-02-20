@@ -1,5 +1,8 @@
 # Vidzy: A MEAN stack tutorial
 
+*A project from Software-Business-Startup at Metropolia University of Applied Sciences, Finland.*
+
+
 ## About
 
 This project is simply a result of a tutorial followed to learn the basics of the MEAN stack. It involves utilizing MongoDB and Angular to create an API and web interface for adding, modifying, and deleting video titles from a virtual catalog.
